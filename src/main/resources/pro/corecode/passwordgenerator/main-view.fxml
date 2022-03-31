@@ -12,10 +12,11 @@
       <Pane prefHeight="551.0" prefWidth="984.0">
          <children>
             <CheckBox layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Letters" />
-            <CheckBox layoutX="243.0" layoutY="14.0" mnemonicParsing="false" text="Special characters" />
+            <CheckBox layoutX="127.0" layoutY="14.0" mnemonicParsing="false" text="Special characters" />
             <Button layoutX="521.0" layoutY="10.0" mnemonicParsing="false" text="Generate" />
             <TextArea layoutX="15.0" layoutY="51.0" prefHeight="355.0" prefWidth="572.0" />
             <Label layoutX="195.0" layoutY="406.0" text="Click by field for copy value to clipboard" />
+            <ChoiceBox layoutX="302.0" layoutY="10.0" prefWidth="150.0" />
          </children></Pane>
    </children>
 </VBox>
