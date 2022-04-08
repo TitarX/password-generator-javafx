@@ -11,12 +11,12 @@
    <children>
       <Pane prefHeight="551.0" prefWidth="984.0">
          <children>
-            <CheckBox layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Letters" />
-            <CheckBox layoutX="127.0" layoutY="14.0" mnemonicParsing="false" text="Special characters" />
-            <Button id="generateButton" contentDisplay="CENTER" layoutX="521.0" layoutY="10.0" mnemonicParsing="false" text="Generate" textAlignment="CENTER" />
+            <CheckBox fx:id="lettersCheckbox" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" selected="true" text="Letters" />
+            <CheckBox fx:id="specialCharactersCheckbox" layoutX="127.0" layoutY="14.0" mnemonicParsing="false" text="Special characters" />
+            <Button id="generateButton" fx:id="generateButton" contentDisplay="CENTER" layoutX="521.0" layoutY="10.0" mnemonicParsing="false" text="Generate" textAlignment="CENTER" />
             <TextArea editable="false" layoutX="15.0" layoutY="51.0" prefHeight="355.0" prefWidth="572.0" />
             <Label layoutX="195.0" layoutY="406.0" text="Click by field for copy value to clipboard" />
-            <ChoiceBox layoutX="302.0" layoutY="10.0" prefWidth="150.0" />
+            <ChoiceBox fx:id="lengthSelect" layoutX="302.0" layoutY="10.0" prefWidth="150.0" />
          </children></Pane>
    </children>
 </VBox>
