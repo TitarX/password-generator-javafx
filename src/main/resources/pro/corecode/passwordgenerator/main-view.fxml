@@ -16,7 +16,7 @@
             <Button id="generateButton" fx:id="generateButton" contentDisplay="CENTER" layoutX="521.0" layoutY="10.0" mnemonicParsing="false" text="Generate" textAlignment="CENTER" />
             <TextArea fx:id="resultTextArea" editable="false" layoutX="15.0" layoutY="51.0" prefHeight="355.0" prefWidth="572.0" />
             <Label layoutX="195.0" layoutY="406.0" text="Click by field for copy value to clipboard" />
-            <ChoiceBox fx:id="lengthSelect" layoutX="302.0" layoutY="10.0" prefWidth="150.0" />
+            <ComboBox fx:id="lengthSelect" layoutX="302.0" layoutY="10.0" prefWidth="150.0" />
          </children></Pane>
    </children>
 </VBox>
