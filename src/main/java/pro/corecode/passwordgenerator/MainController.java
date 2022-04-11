@@ -13,7 +13,7 @@ public class MainController implements Initializable {
     @FXML
     private CheckBox specialCharactersCheckBox;
     @FXML
-    private ComboBox<String> lengthSelect;
+    private ComboBox<Integer> lengthSelect;
     @FXML
     private Button generateButton;
     @FXML
@@ -23,6 +23,18 @@ public class MainController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //lengthSelect
+        lengthSelect.getItems().addAll(8, 16, 32, 64);
+        lengthSelect.setPromptText("Length");
+        lengthSelect.setValue(16);
+
+        this.passwordGenerate();
+    }
+
+    private void passwordGenerate() {
+        boolean withLetters = lettersCheckBox.isSelected();
+        boolean withSpecialCharacters = specialCharactersCheckBox.isSelected();
+        int passwordLength = lengthSelect.getValue();
+
+        //
     }
 }
