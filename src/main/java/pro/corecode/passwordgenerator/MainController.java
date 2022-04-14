@@ -21,6 +21,11 @@ public class MainController implements Initializable {
     @FXML
     private Label clickHintLabel;
 
+    private String digits = "0123456789";
+    private String lettersLow = "abcdefghijklmnopqrstuvwxyz";
+    private String lettersUp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    private String specialCharacters = "~!@#$%^&*()";
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lengthSelect.getItems().addAll(8, 16, 32, 64);
