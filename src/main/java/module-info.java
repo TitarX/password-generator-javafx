@@ -3,6 +3,6 @@ module pro.corecode.passwordgenerator {
     requires javafx.fxml;
 
 
-    opens pro.corecode.passwordgenerator to javafx.fxml;
-    exports pro.corecode.passwordgenerator;
+    opens workcode.passwordgenerator to javafx.fxml;
+    exports workcode.passwordgenerator;
 }

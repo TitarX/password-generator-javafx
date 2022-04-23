@@ -1,4 +1,4 @@
-package pro.corecode.passwordgenerator;
+package workcode.passwordgenerator;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

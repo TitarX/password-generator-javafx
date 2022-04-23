@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox alignment="CENTER" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="pro.corecode.passwordgenerator.MainController">
+<VBox alignment="CENTER" minWidth="-Infinity" prefHeight="480.0" prefWidth="640.0" spacing="20.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="workcode.passwordgenerator.MainController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
@@ -15,7 +15,7 @@
             <CheckBox fx:id="specialCharactersCheckBox" layoutX="120.0" layoutY="14.0" mnemonicParsing="false" text="Special characters" />
             <Button id="generateButton" fx:id="generateButton" contentDisplay="CENTER" layoutX="521.0" layoutY="10.0" mnemonicParsing="false" text="Generate" textAlignment="CENTER" />
             <TextArea fx:id="resultTextArea" editable="false" layoutX="15.0" layoutY="51.0" prefHeight="355.0" prefWidth="572.0" />
-            <Label layoutX="195.0" layoutY="406.0" text="Click by field for copy value to clipboard" />
+            <Label layoutX="195.0" layoutY="406.0" text="Click on the field to copy the value to the clipboard" />
             <ComboBox fx:id="lengthSelect" editable="true" layoutX="325.0" layoutY="10.0" prefWidth="150.0" />
             <Label ellipsisString="" layoutX="285.0" layoutY="14.0" text="Length" />
          </children></Pane>
