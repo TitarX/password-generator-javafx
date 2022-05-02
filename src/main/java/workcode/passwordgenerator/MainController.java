@@ -5,6 +5,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
@@ -21,16 +22,18 @@ public class MainController implements Initializable {
     @FXML
     private Label clickHintLabel;
 
+    private static final int RECURSIVE_CALLS_COUNT_MAX = 100;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         lengthSelect.getItems().addAll(8, 16, 32, 64);
         lengthSelect.setPromptText("Length");
         lengthSelect.setValue(16);
 
-        this.passwordGenerate();
+        this.passwordGenerate(0);
     }
 
-    private void passwordGenerate() {
+    private void passwordGenerate(int recursiveCallsCount) {
         boolean withLetters = lettersCheckBox.isSelected();
         boolean withSpecialCharacters = specialCharactersCheckBox.isSelected();
         int passwordLength = lengthSelect.getValue();
@@ -41,32 +44,50 @@ public class MainController implements Initializable {
             String lettersUp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             String specialCharacters = "~!@#$%^&*()";
 
-            int passwordCharsSpeciesIndex = 0;
-            String[] passwordChars = new String[4];
-            passwordChars[passwordCharsSpeciesIndex] = digits;
+            ArrayList<String> passwordCharsList = new ArrayList<>();
+            passwordCharsList.add(digits);
 
             if (withLetters) {
-                passwordCharsSpeciesIndex++;
-                passwordChars[passwordCharsSpeciesIndex] = lettersLow;
-                passwordCharsSpeciesIndex++;
-                passwordChars[passwordCharsSpeciesIndex] = lettersUp;
+                passwordCharsList.add(lettersLow);
+                passwordCharsList.add(lettersUp);
             }
 
             if (withSpecialCharacters) {
-                passwordCharsSpeciesIndex++;
-                passwordChars[passwordCharsSpeciesIndex] = specialCharacters;
+                passwordCharsList.add(specialCharacters);
             }
 
+            int passwordCharsSize = passwordCharsList.size();
+            StringBuilder passwordBuilder = new StringBuilder();
             for (int i = 0; i < passwordLength; i++) {
                 // Случайный выбор типа символа
-                int randomForSpecy = (int) (Math.random() * (passwordCharsSpeciesIndex + 1));
-                String charsSet = passwordChars[randomForSpecy];
+                int randomForSpecy = (int) (Math.random() * passwordCharsSize);
+                String charsSet = passwordCharsList.get(randomForSpecy);
                 int charsSetLength = charsSet.length();
 
                 // Случайный выбор символа
                 int randomForChar = (int) (Math.random() * charsSetLength);
                 char charForPassword = charsSet.charAt(randomForChar);
+                passwordBuilder.append(charForPassword);
+            }
+            String passwordString = passwordBuilder.toString();
+
+            boolean isPasswordCorrect = passwordCheck(passwordString, passwordCharsList);
+            if (isPasswordCorrect) {
+                // Пароль верный, выводим
+            } else {
+                recursiveCallsCount++;
+                if (recursiveCallsCount <= RECURSIVE_CALLS_COUNT_MAX) {
+                    passwordGenerate(recursiveCallsCount);
+                } else {
+                    // Число попыток генерации пароля превысило лимит, выводим "Failed to generate password"
+                }
             }
         }
+    }
+
+    private boolean passwordCheck(String passwordString, ArrayList<String> passwordCharsList) {
+        //
+
+        return true;
     }
 }
