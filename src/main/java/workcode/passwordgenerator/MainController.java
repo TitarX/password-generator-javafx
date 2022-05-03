@@ -7,6 +7,7 @@ import javafx.scene.control.*;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.ResourceBundle;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class MainController implements Initializable {
     @FXML
@@ -44,24 +45,24 @@ public class MainController implements Initializable {
             String lettersUp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
             String specialCharacters = "~!@#$%^&*()";
 
-            ArrayList<String> passwordCharsList = new ArrayList<>();
-            passwordCharsList.add(digits);
+            ArrayList<String> charsForPasswordList = new ArrayList<>();
+            charsForPasswordList.add(digits);
 
             if (withLetters) {
-                passwordCharsList.add(lettersLow);
-                passwordCharsList.add(lettersUp);
+                charsForPasswordList.add(lettersLow);
+                charsForPasswordList.add(lettersUp);
             }
 
             if (withSpecialCharacters) {
-                passwordCharsList.add(specialCharacters);
+                charsForPasswordList.add(specialCharacters);
             }
 
-            int passwordCharsSize = passwordCharsList.size();
+            int passwordCharsSize = charsForPasswordList.size();
             StringBuilder passwordBuilder = new StringBuilder();
             for (int i = 0; i < passwordLength; i++) {
                 // Случайный выбор типа символа
                 int randomForSpecy = (int) (Math.random() * passwordCharsSize);
-                String charsSet = passwordCharsList.get(randomForSpecy);
+                String charsSet = charsForPasswordList.get(randomForSpecy);
                 int charsSetLength = charsSet.length();
 
                 // Случайный выбор символа
@@ -71,23 +72,43 @@ public class MainController implements Initializable {
             }
             String passwordString = passwordBuilder.toString();
 
-            boolean isPasswordCorrect = passwordCheck(passwordString, passwordCharsList);
+            boolean isPasswordCorrect = passwordCheck(passwordString, charsForPasswordList);
             if (isPasswordCorrect) {
                 // Пароль верный, выводим
+
+                // System.out.println(passwordString);
             } else {
                 recursiveCallsCount++;
                 if (recursiveCallsCount <= RECURSIVE_CALLS_COUNT_MAX) {
                     passwordGenerate(recursiveCallsCount);
                 } else {
                     // Число попыток генерации пароля превысило лимит, выводим "Failed to generate password"
+
+                    // System.out.println("Failed to generate password");
                 }
             }
         }
     }
 
-    private boolean passwordCheck(String passwordString, ArrayList<String> passwordCharsList) {
-        //
+    private boolean passwordCheck(String passwordString, ArrayList<String> charsForPasswordList) {
+        char[] passwordCharsArray = passwordString.toCharArray();
 
-        return true;
+        AtomicBoolean passwordCorrect = new AtomicBoolean(true);
+        charsForPasswordList.forEach((charsForPassword) -> {
+            boolean charNotFound = true;
+            for (char passwordChar : passwordCharsArray) {
+                int charIndex = charsForPassword.indexOf(passwordChar);
+                if (charIndex > -1) {
+                    charNotFound = false;
+                    break;
+                }
+            }
+
+            if (charNotFound) {
+                passwordCorrect.set(false);
+            }
+        });
+
+        return passwordCorrect.get();
     }
 }
