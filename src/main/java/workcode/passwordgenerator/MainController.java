@@ -75,6 +75,7 @@ public class MainController implements Initializable {
             boolean isPasswordCorrect = passwordCheck(passwordString, charsForPasswordList);
             if (isPasswordCorrect) {
                 // Пароль верный, выводим
+                this.resultTextArea.setStyle("-fx-text-fill: black;");
                 this.resultTextArea.setText(passwordString);
             } else {
                 recursiveCallsCount++;
@@ -82,8 +83,8 @@ public class MainController implements Initializable {
                     passwordGenerate(recursiveCallsCount);
                 } else {
                     // Число попыток генерации пароля превысило лимит, выводим "Failed to generate password"
-
-                    // System.out.println("Failed to generate password");
+                    this.resultTextArea.setStyle("-fx-text-fill: red;");
+                    this.resultTextArea.setText("Failed to generate password");
                 }
             }
         }
