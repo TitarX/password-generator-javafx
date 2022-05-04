@@ -75,8 +75,7 @@ public class MainController implements Initializable {
             boolean isPasswordCorrect = passwordCheck(passwordString, charsForPasswordList);
             if (isPasswordCorrect) {
                 // Пароль верный, выводим
-
-                // System.out.println(passwordString);
+                this.resultTextArea.setText(passwordString);
             } else {
                 recursiveCallsCount++;
                 if (recursiveCallsCount <= RECURSIVE_CALLS_COUNT_MAX) {
