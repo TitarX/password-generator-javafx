@@ -31,6 +31,8 @@ public class MainController implements Initializable {
         lengthSelect.setPromptText("Length");
         lengthSelect.setValue(16);
 
+        generateButton.setOnMouseClicked(event -> this.passwordGenerate(0));
+
         this.passwordGenerate(0);
     }
 
