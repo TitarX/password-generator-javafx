@@ -3,6 +3,8 @@ package workcode.passwordgenerator;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
+import javafx.scene.input.Clipboard;
+import javafx.scene.input.ClipboardContent;
 
 import java.net.URL;
 import java.util.ArrayList;
@@ -79,6 +81,7 @@ public class MainController implements Initializable {
                 // Пароль верный, выводим
                 this.resultTextArea.setStyle("-fx-text-fill: black;");
                 this.resultTextArea.setText(passwordString);
+                this.setToClipboard(passwordString);
             } else {
                 recursiveCallsCount++;
                 if (recursiveCallsCount <= RECURSIVE_CALLS_COUNT_MAX) {
@@ -112,5 +115,12 @@ public class MainController implements Initializable {
         });
 
         return passwordCorrect.get();
+    }
+
+    private void setToClipboard(String text) {
+        Clipboard clipboard = Clipboard.getSystemClipboard();
+        ClipboardContent clipboardContent = new ClipboardContent();
+        clipboardContent.putString(text);
+        clipboard.setContent(clipboardContent);
     }
 }
