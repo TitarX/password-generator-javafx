@@ -26,14 +26,21 @@ public class MainController implements Initializable {
     private Label clickHintLabel;
 
     private static final int RECURSIVE_CALLS_COUNT_MAX = 100;
+    private static final String FAILED_TO_GENERATE_PASSWORD = "Failed to generate password";
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        lengthSelect.getItems().addAll(8, 16, 32, 64);
-        lengthSelect.setPromptText("Length");
-        lengthSelect.setValue(16);
+        this.lengthSelect.getItems().addAll(8, 16, 32, 64);
+        this.lengthSelect.setPromptText("Length");
+        this.lengthSelect.setValue(16);
 
-        generateButton.setOnMouseClicked(event -> this.passwordGenerate(0));
+        this.generateButton.setOnMouseClicked(event -> this.passwordGenerate(0));
+        this.resultTextArea.setOnMouseClicked(event -> {
+            String passwordValue = this.resultTextArea.getText().trim();
+            if (!passwordValue.equals(FAILED_TO_GENERATE_PASSWORD)) {
+                this.setToClipboard(passwordValue);
+            }
+        });
 
         this.passwordGenerate(0);
     }
